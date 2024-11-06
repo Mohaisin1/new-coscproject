@@ -1,0 +1,15 @@
+{
+  "name": "cosc3506_club_management_system",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tailwindcss -i ./dist/CSS/input.css -o ./dist/CSS/style.css --watch"
+  },
+  "author": "Megh Shah",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "tailwindcss": "^3.4.13"
+  }
+}
