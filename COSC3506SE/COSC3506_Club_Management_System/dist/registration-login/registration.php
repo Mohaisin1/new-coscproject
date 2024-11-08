@@ -9,7 +9,7 @@ class Registration {
         $this->tableName = 'users';
     }
 
-    public function validate($firstName, $lastName, $gender, $email, $password) {
+    public function validate($firstName, $lastName, $email, $password) {
 
         $error = false;
         $errMsg = null;
@@ -21,10 +21,7 @@ class Registration {
         if(empty($lastName)) {
             $errMsg = "Last Name is empty";
             $error = true;
-        }
-        if(empty($gender)) {
-            $errMsg = "Gender is empty";
-            $error = true;
+   
         }
 
         if(empty($email)) {
@@ -49,23 +46,22 @@ class Registration {
       
         $firstName = $data['firstName'];
         $lastName = $data['lastName'];
-        $gender = $data['gender'];
         $email = $data['email'];
         $password = $data['password'];
         $check = $this->getByEmail($email);
         if(!$check) {
-        $validate = $this->validate($firstName, $lastName, $gender, $email, $password);
+        $validate = $this->validate($firstName, $lastName,$email, $password);
         $success = false;
 
         if (!$validate['error']){
 
             $query = "INSERT INTO ";
             $query .= $this->tableName; 
-            $query .= " (firstName, lastName, gender, email, password ) ";
+            $query .= " (firstName, lastName,email, password ) ";
             $query .= " VALUES (?, ?, ?, ?, ?)";
 
             $stmt = $this->conn->prepare($query);
-            $stmt->bind_param("sssss", $firstName, $lastName, $gender, $email, $password);
+            $stmt->bind_param("sssss", $firstName, $lastName,$email, $password);
             
             if ($stmt->execute()) {
                 $status = 200;
